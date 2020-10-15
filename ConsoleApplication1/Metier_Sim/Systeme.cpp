@@ -12,9 +12,10 @@ void Systeme::TraiterEvenement(int imin)
 	int piece = -1;
 	if (imin == 2)
 	{
-		r.log += "Fin traitement P" + std::to_string(m.piece_en_cours) + ", t = " + std::to_string(Date_Simulation) + "\n";
-		
+		// Actualisation date simu
 		Date_Simulation = m.dpe;
+		// ajout log
+		r.log += "Fin traitement P" + std::to_string(m.piece_en_cours) + ", t = " + std::to_string(Date_Simulation) + "\n";
 		// Retirer(M, P)
 		piece = m.piece_en_cours;
 		m.piece_en_cours = -1;
@@ -22,7 +23,7 @@ void Systeme::TraiterEvenement(int imin)
 		out.file.push(piece);
 		r.SortiePiece(piece, Date_Simulation); // stats
 
-		if (m.file.empty())
+		if (m.file.size() <= 0)
 			m.dpe = infinite; // dpe = inf
 		else
 		{
@@ -32,43 +33,56 @@ void Systeme::TraiterEvenement(int imin)
 			if (in.bloque)
 				in.dpe = Date_Simulation;
 			// Poser(M, P)
+			r.log += "Début traitement P" + std::to_string(m.piece_en_cours) + ", t = " + std::to_string(Date_Simulation) + "\n";
 			m.piece_en_cours = piece;
 			m.dpe = Date_Simulation + in.traitement;
 		}
 	}
 	if (imin == 1)
 	{
-		Date_Simulation = in.dpe;
-		if (m.file.size() == 9)
+		if (in.file.size() > 0)
 		{
-			in.bloque = true;
-			in.dpe = infinite;
-		}
-		else
-		{
-			// Retirer(E, P)
-			piece = in.file.front();
-			in.file.pop();
-			r.EntreePiece(piece, Date_Simulation);
-			if (m.piece_en_cours == -1)
+			Date_Simulation = in.dpe;
+			if (m.file.size() == 9)
 			{
-				m.piece_en_cours = piece;
-				m.dpe = Date_Simulation + in.traitement;
+				in.bloque = true;
+				in.dpe = infinite;
 			}
 			else
 			{
-				// Poser(File, P)
-				m.file.push(piece);
+				// Retirer(E, P)
+				piece = in.file.front();
+				in.file.pop();
+				r.EntreePiece(piece, Date_Simulation);
+				if (m.piece_en_cours == -1)
+				{
+					m.piece_en_cours = piece;
+					m.dpe = Date_Simulation + in.traitement;
+				}
+				else
+				{
+					// Poser(File, P)
+					m.file.push(piece);
+				}
+				in.dpe = Date_Simulation + in.interclient;
 			}
-			in.dpe = Date_Simulation + in.interclient;
 		}
+		else
+			in.dpe = infinite;
 	}
 }
 
 int Systeme::RechercheImin()
 {
 	int ret = 0;
-	if (in.dpe == m.dpe || in.dpe > m.dpe)
+	if (in.dpe == m.dpe)
+	{
+		if (m.piece_en_cours < in.file.front())
+			ret = 2;
+		else 
+			ret = 1;
+	}
+	if (in.dpe > m.dpe)
 		ret = 2;
 	if (in.dpe < m.dpe)
 		ret = 1;

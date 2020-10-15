@@ -103,63 +103,66 @@ namespace ConsoleApplication1 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(13, 25);
+			this->label1->Location = System::Drawing::Point(15, 31);
 			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(112, 17);
+			this->label1->Size = System::Drawing::Size(125, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"durée simulation";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(13, 63);
+			this->label2->Location = System::Drawing::Point(15, 79);
 			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(110, 17);
+			this->label2->Size = System::Drawing::Size(122, 20);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"durée interclient";
 			// 
 			// sim_span
 			// 
-			this->sim_span->Location = System::Drawing::Point(176, 25);
-			this->sim_span->Margin = System::Windows::Forms::Padding(4);
+			this->sim_span->Location = System::Drawing::Point(198, 31);
+			this->sim_span->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->sim_span->Name = L"sim_span";
-			this->sim_span->Size = System::Drawing::Size(132, 22);
+			this->sim_span->Size = System::Drawing::Size(148, 26);
 			this->sim_span->TabIndex = 2;
+			this->sim_span->Text = L"100";
 			// 
 			// sim_client_span
 			// 
-			this->sim_client_span->Location = System::Drawing::Point(176, 60);
-			this->sim_client_span->Margin = System::Windows::Forms::Padding(4);
+			this->sim_client_span->Location = System::Drawing::Point(198, 75);
+			this->sim_client_span->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->sim_client_span->Name = L"sim_client_span";
-			this->sim_client_span->Size = System::Drawing::Size(132, 22);
+			this->sim_client_span->Size = System::Drawing::Size(148, 26);
 			this->sim_client_span->TabIndex = 3;
+			this->sim_client_span->Text = L"4";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(13, 97);
+			this->label3->Location = System::Drawing::Point(15, 121);
 			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(149, 17);
+			this->label3->Size = System::Drawing::Size(167, 20);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"durée traitement client";
 			// 
 			// sim_proc_span
 			// 
-			this->sim_proc_span->Location = System::Drawing::Point(176, 94);
-			this->sim_proc_span->Margin = System::Windows::Forms::Padding(4);
+			this->sim_proc_span->Location = System::Drawing::Point(198, 118);
+			this->sim_proc_span->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->sim_proc_span->Name = L"sim_proc_span";
-			this->sim_proc_span->Size = System::Drawing::Size(132, 22);
+			this->sim_proc_span->Size = System::Drawing::Size(148, 26);
 			this->sim_proc_span->TabIndex = 5;
+			this->sim_proc_span->Text = L"6";
 			// 
 			// simulation_button
 			// 
-			this->simulation_button->Location = System::Drawing::Point(330, 4);
-			this->simulation_button->Margin = System::Windows::Forms::Padding(4);
+			this->simulation_button->Location = System::Drawing::Point(371, 5);
+			this->simulation_button->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->simulation_button->Name = L"simulation_button";
-			this->simulation_button->Size = System::Drawing::Size(289, 134);
+			this->simulation_button->Size = System::Drawing::Size(325, 168);
 			this->simulation_button->TabIndex = 6;
 			this->simulation_button->Text = L"Lancer la simulation";
 			this->simulation_button->UseVisualStyleBackColor = true;
@@ -167,9 +170,10 @@ namespace ConsoleApplication1 {
 			// 
 			// button_quit
 			// 
-			this->button_quit->Location = System::Drawing::Point(719, 533);
+			this->button_quit->Location = System::Drawing::Point(809, 666);
+			this->button_quit->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->button_quit->Name = L"button_quit";
-			this->button_quit->Size = System::Drawing::Size(75, 23);
+			this->button_quit->Size = System::Drawing::Size(84, 29);
 			this->button_quit->TabIndex = 7;
 			this->button_quit->Text = L"Quitter";
 			this->button_quit->UseVisualStyleBackColor = true;
@@ -177,10 +181,11 @@ namespace ConsoleApplication1 {
 			// 
 			// console_box
 			// 
-			this->console_box->Location = System::Drawing::Point(626, 4);
+			this->console_box->Location = System::Drawing::Point(704, 5);
+			this->console_box->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->console_box->Name = L"console_box";
 			this->console_box->ReadOnly = true;
-			this->console_box->Size = System::Drawing::Size(524, 523);
+			this->console_box->Size = System::Drawing::Size(589, 653);
 			this->console_box->TabIndex = 8;
 			this->console_box->Text = L"";
 			// 
@@ -190,22 +195,24 @@ namespace ConsoleApplication1 {
 			this->chart->ChartAreas->Add(chartArea1);
 			legend1->Name = L"Legend1";
 			this->chart->Legends->Add(legend1);
-			this->chart->Location = System::Drawing::Point(12, 158);
+			this->chart->Location = System::Drawing::Point(14, 198);
+			this->chart->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->chart->Name = L"chart";
 			series1->ChartArea = L"ChartArea1";
 			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
 			series1->Legend = L"Legend1";
 			series1->Name = L"Series1";
 			this->chart->Series->Add(series1);
-			this->chart->Size = System::Drawing::Size(603, 369);
+			this->chart->Size = System::Drawing::Size(678, 461);
 			this->chart->TabIndex = 9;
 			this->chart->Text = L"chart1";
 			// 
 			// console_clear
 			// 
-			this->console_clear->Location = System::Drawing::Point(638, 533);
+			this->console_clear->Location = System::Drawing::Point(718, 666);
+			this->console_clear->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->console_clear->Name = L"console_clear";
-			this->console_clear->Size = System::Drawing::Size(75, 23);
+			this->console_clear->Size = System::Drawing::Size(84, 29);
 			this->console_clear->TabIndex = 10;
 			this->console_clear->Text = L"Clear";
 			this->console_clear->UseVisualStyleBackColor = true;
@@ -214,24 +221,26 @@ namespace ConsoleApplication1 {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(9, 130);
+			this->label4->Location = System::Drawing::Point(10, 162);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(121, 17);
+			this->label4->Size = System::Drawing::Size(135, 20);
 			this->label4->TabIndex = 11;
 			this->label4->Text = L"nombre de piéces";
 			// 
 			// sim_piece_number
 			// 
-			this->sim_piece_number->Location = System::Drawing::Point(176, 130);
+			this->sim_piece_number->Location = System::Drawing::Point(198, 162);
+			this->sim_piece_number->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->sim_piece_number->Name = L"sim_piece_number";
-			this->sim_piece_number->Size = System::Drawing::Size(132, 22);
+			this->sim_piece_number->Size = System::Drawing::Size(148, 26);
 			this->sim_piece_number->TabIndex = 12;
+			this->sim_piece_number->Text = L"10";
 			// 
 			// form_main
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1611, 863);
+			this->ClientSize = System::Drawing::Size(1812, 1079);
 			this->Controls->Add(this->sim_piece_number);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->console_clear);
@@ -245,7 +254,7 @@ namespace ConsoleApplication1 {
 			this->Controls->Add(this->sim_span);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(4);
+			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"form_main";
 			this->Text = L"form_main";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart))->EndInit();
