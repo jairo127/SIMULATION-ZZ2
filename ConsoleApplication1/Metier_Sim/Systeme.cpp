@@ -25,6 +25,7 @@ void Systeme::TraiterEvenement(int imin)
 		{
 			piece = m.file.front(); // Retirer(File,P)
 			m.file.pop();
+			r.SortiePieceFile(piece, Date_Simulation); // (Stats sortie file)
 			if (in.bloque) // Si E.bloqué alors
 				in.dpe = Date_Simulation; // E.dpe = Date_Simulation
 			m.piece_en_cours = piece; // Poser(M, P)
@@ -49,10 +50,13 @@ void Systeme::TraiterEvenement(int imin)
 			{
 				m.piece_en_cours = piece; // Poser(M, P)
 				m.dpe = Date_Simulation + in.traitement; // M.dpe = Date_Simulation + Sa
+				r.EntreePieceFile(piece, Date_Simulation); // (Stats entrée file)
+				r.SortiePieceFile(piece, Date_Simulation); // (Stats sortie file)
 			}
 			else // Sinon
 			{
 				m.file.push(piece); // Poser(File, P)
+				r.EntreePieceFile(piece, Date_Simulation);
 			}
 			in.dpe = Date_Simulation + in.interclient; // E.dpe = Date_Simulation + Lam 
 		}
