@@ -10,91 +10,80 @@ Systeme::Systeme(int const nb_piece, int const interclient, int const traitement
 void Systeme::TraiterEvenement(int imin)
 {
 	int piece = -1;
-	if (imin == 2)
+	if (imin == 2) // Si imin == 2 alors
 	{
-		// Actualisation date simu
-		Date_Simulation = m.dpe;
-		// ajout log
-		r.log += "Fin traitement P" + std::to_string(m.piece_en_cours) + ", t = " + std::to_string(Date_Simulation) + "\n";
-		// Retirer(M, P)
-		piece = m.piece_en_cours;
-		m.piece_en_cours = -1;
-		// Poser(Sortie, P)
-		out.file.push(piece);
-		r.SortiePiece(piece, Date_Simulation); // stats
+		Date_Simulation = m.dpe; // Date_Simulation = M.dpe
+		r.log += "Fin traitement P" + std::to_string(m.piece_en_cours) + ", t = " + std::to_string(Date_Simulation) + "\n"; // (log)
+		piece = m.piece_en_cours; // Retirer(M, P)
+		m.piece_en_cours = -1; // M.Etat = vide
+		out.file.push(piece); // Poser(Sortie, P)
+		r.SortiePiece(piece, Date_Simulation); // (Stats sortie)
 
-		if (m.file.size() <= 0)
-			m.dpe = infinite; // dpe = inf
+		if (m.file.size() <= 0) // Si estVide(file) alors
+			m.dpe = infinite; // M.dpe = inf
 		else
 		{
-			// Retirer(File,P)
-			piece = m.file.front();
+			piece = m.file.front(); // Retirer(File,P)
 			m.file.pop();
-			if (in.bloque)
-				in.dpe = Date_Simulation;
-			// Poser(M, P)
-			r.log += "Début traitement P" + std::to_string(m.piece_en_cours) + ", t = " + std::to_string(Date_Simulation) + "\n";
-			m.piece_en_cours = piece;
-			m.dpe = Date_Simulation + in.traitement;
+			if (in.bloque) // Si E.bloqué alors
+				in.dpe = Date_Simulation; // E.dpe = Date_Simulation
+			m.piece_en_cours = piece; // Poser(M, P)
+			m.dpe = Date_Simulation + in.traitement; // M.dpe = Date_Simulation + Sa
+			r.log += "Début traitement P" + std::to_string(m.piece_en_cours) + ", t = " + std::to_string(Date_Simulation) + "\n"; // (log)
 		}
 	}
-	if (imin == 1)
+	if (imin == 1) // Si imin == 1 alors
 	{
-		if (in.file.size() > 0)
+		Date_Simulation = in.dpe; // Date_Simulation = E.dpe
+		if (m.file.size() >= 9) // Si file est pleine alors
 		{
-			Date_Simulation = in.dpe;
-			if (m.file.size() == 9)
-			{
-				in.bloque = true;
-				in.dpe = infinite;
-			}
-			else
-			{
-				// Retirer(E, P)
-				piece = in.file.front();
-				in.file.pop();
-				r.EntreePiece(piece, Date_Simulation);
-				if (m.piece_en_cours == -1)
-				{
-					m.piece_en_cours = piece;
-					m.dpe = Date_Simulation + in.traitement;
-				}
-				else
-				{
-					// Poser(File, P)
-					m.file.push(piece);
-				}
-				in.dpe = Date_Simulation + in.interclient;
-			}
+			in.bloque = true; // E.etat = bloqué
+			in.dpe = infinite; // E.dpe = inf
 		}
-		else
+		else // Sinon
+		{
+			piece = in.file.front(); // Retirer(E, P)
+			in.file.pop();
+			r.EntreePiece(piece, Date_Simulation); // (Stats entrée)
+			if (m.piece_en_cours == -1) // Si serveur vide
+			{
+				m.piece_en_cours = piece; // Poser(M, P)
+				m.dpe = Date_Simulation + in.traitement; // M.dpe = Date_Simulation + Sa
+			}
+			else // Sinon
+			{
+				m.file.push(piece); // Poser(File, P)
+			}
+			in.dpe = Date_Simulation + in.interclient; // E.dpe = Date_Simulation + Lam 
+		}
+		if (in.file.size() == 0) // Si file d'entrée vide
+		{
 			in.dpe = infinite;
+			in.bloque = false; // éviter de rerentrer dans la cas 1
+		}
+			
 	}
 }
 
 int Systeme::RechercheImin()
 {
 	int ret = 0;
-	if (in.dpe == m.dpe)
-	{
-		if (m.piece_en_cours < in.file.front())
-			ret = 2;
-		else 
-			ret = 1;
-	}
-	if (in.dpe > m.dpe)
-		ret = 2;
 	if (in.dpe < m.dpe)
 		ret = 1;
+	else
+		ret = 2;
+	if (in.dpe == infinite && m.dpe == infinite)
+		ret = 0;
 	return ret;
 }
 
 Resultat Systeme::Simuler()
 {
+	int imin = -1;
 	Date_Simulation = 0;
-	while (Date_Simulation < Date_Fin || out.file.size() != in.num_derniere_piece)
+	while (Date_Simulation < Date_Fin && imin != 0 )
 	{
-		int imin = RechercheImin();
+		imin = RechercheImin();
 		TraiterEvenement(imin);
 	}
 	r.log += "Fin de la simulation, t = " + std::to_string(Date_Simulation) + "\n";

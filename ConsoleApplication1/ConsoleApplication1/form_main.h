@@ -325,6 +325,7 @@ private: System::Void simulation_start(System::Object^ sender, System::EventArgs
 	Resultat r = s.Simuler();
 	this->console_box->AppendText(context.marshal_as<String^>(r.log));
 	
+	this->simulation_button->Enabled = true;
 	/*
 	float x = 0.1;
 	float y = 0;
