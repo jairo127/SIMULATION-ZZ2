@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication1", "Cons
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Metier_Sim", "Metier_Sim\Metier_Sim.vcxproj", "{BFF754EA-1C35-418A-A724-B86E3420AD9C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Simulation_TP2", "Simulation_TP2\Simulation_TP2.vcxproj", "{AB6316C6-DBE0-475A-9084-810DBF45D5EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{BFF754EA-1C35-418A-A724-B86E3420AD9C}.Release|x64.Build.0 = Release|x64
 		{BFF754EA-1C35-418A-A724-B86E3420AD9C}.Release|x86.ActiveCfg = Release|Win32
 		{BFF754EA-1C35-418A-A724-B86E3420AD9C}.Release|x86.Build.0 = Release|Win32
+		{AB6316C6-DBE0-475A-9084-810DBF45D5EC}.Debug|x64.ActiveCfg = Debug|x64
+		{AB6316C6-DBE0-475A-9084-810DBF45D5EC}.Debug|x64.Build.0 = Debug|x64
+		{AB6316C6-DBE0-475A-9084-810DBF45D5EC}.Debug|x86.ActiveCfg = Debug|Win32
+		{AB6316C6-DBE0-475A-9084-810DBF45D5EC}.Debug|x86.Build.0 = Debug|Win32
+		{AB6316C6-DBE0-475A-9084-810DBF45D5EC}.Release|x64.ActiveCfg = Release|x64
+		{AB6316C6-DBE0-475A-9084-810DBF45D5EC}.Release|x64.Build.0 = Release|x64
+		{AB6316C6-DBE0-475A-9084-810DBF45D5EC}.Release|x86.ActiveCfg = Release|Win32
+		{AB6316C6-DBE0-475A-9084-810DBF45D5EC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
